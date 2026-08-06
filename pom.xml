@@ -51,7 +51,9 @@
         <java.version>17</java.version>
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
-    </properties>
+    
+		<pac4j.version>4.5.7</pac4j.version>
+		<javax-servlet-api.version>4.0.1</javax-servlet-api.version></properties>
 
     <!-- 依赖版本统一管理（dependencyManagement） -->
     <dependencyManagement>
@@ -73,19 +75,19 @@
             <dependency>
                 <groupId>org.pac4j</groupId>
                 <artifactId>pac4j-core</artifactId>
-                <version>4.5.7</version>
+                <version>${pac4j.version}</version>
             </dependency>
             <!-- For Pac4j -->
             <dependency>
                 <groupId>org.pac4j</groupId>
                 <artifactId>pac4j-oauth</artifactId>
-                <version>4.5.7</version>
+                <version>${pac4j.version}</version>
             </dependency>
             <!-- For Servlet Api -->
             <dependency>
                 <groupId>javax.servlet</groupId>
                 <artifactId>javax.servlet-api</artifactId>
-                <version>4.0.1</version>
+                <version>${javax-servlet-api.version}</version>
                 <scope>provided</scope>
             </dependency>
         </dependencies>
