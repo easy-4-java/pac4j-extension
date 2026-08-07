@@ -7,9 +7,9 @@
 基于 pac4j-core 的业务扩展：验证码表单登录、Token 与签名客户端、失败计数、授权器与回调 URL 解析器
 
 > **当前分支**：`feature/3.0.x`
-> **版本**：`3.0.x.x.20260630-SNAPSHOT`
-> **JDK 基线**：8
-> **项目状态**：维护中（1.0.x 线）。尚未发布 Maven Central；制品通过 Aliyun Maven 仓库与 GitHub Releases 分发。
+> **版本**：`3.0.x.20260630-SNAPSHOT`
+> **JDK 基线**：21
+> **项目状态**：活跃维护（3.0.x 线）。制品通过阿里云 Maven 仓库分发。
 
 ## 目录
 
@@ -75,7 +75,7 @@
 
 | 组件 | 版本 | 说明 |
 |---|---:|---|
-| JDK | 21+ | 1.0.x 线基线 |
+| JDK | 21+ | 3.0.x 线基线 |
 | Maven | 3.0+ | Enforcer 下限 |
 | pac4j-core / config / http | 4.5.7 | 固定版本 |
 | fastjson | 2.0.x | JSON 处理 |
@@ -86,9 +86,9 @@
 
 | 版本线 | 分支 | JDK | 版本模式 | 用途 |
 |---|---|---:|---|---|
-| 1.0.x | `feature/3.0.x`（当前分支） | 8 | `1.0.x.*` | 存量项目、Boot 2.x Starter 线 |
+| 1.0.x | `feature/1.0.x` | 8 | `1.0.x.*` | 存量项目、Boot 2.x Starter 线 |
 | 2.0.x | `feature/2.0.x` | 17 | `2.0.x.*` | JDK 17 线 |
-| 3.0.x | `feature/3.0.x` | 21 | `3.0.x.*` | 新项目 |
+| 3.0.x | `feature/3.0.x`（当前分支） | 21 | `3.0.x.*` | 新项目 |
 
 <a id="4-architecture--modules"></a>
 ## 4. 架构与模块

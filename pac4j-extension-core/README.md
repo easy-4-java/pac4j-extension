@@ -8,9 +8,9 @@ Business-oriented extensions for pac4j-core: captcha form login, token & signatu
 [简体中文](./README.zh-CN.md)
 
 > **Current branch**: `feature/3.0.x`
-> **Version**: `3.0.x.x.20260630-SNAPSHOT`
-> **JDK baseline**: 8
-> **Project status**: maintenance (1.0.x line). Not yet published to Maven Central; artifacts are distributed via the Aliyun Maven repository and GitHub Releases.
+> **Version**: `3.0.x.20260630-SNAPSHOT`
+> **JDK baseline**: 21
+> **Project status**: active (3.0.x line). Artifacts are distributed via the Aliyun Maven repository.
 
 ## Table of Contents
 
@@ -76,7 +76,7 @@ Business-oriented extensions for pac4j-core: captcha form login, token & signatu
 
 | Component | Version | Notes |
 |---|---:|---|
-| JDK | 21+ | 1.0.x line baseline |
+| JDK | 21+ | 3.0.x line baseline |
 | Maven | 3.0+ | Enforcer minimum |
 | pac4j-core / config / http | 4.5.7 | Pinned |
 | fastjson | 2.0.x | JSON handling |
@@ -87,9 +87,9 @@ Version-line matrix:
 
 | Version line | Branch | JDK | Version pattern | Purpose |
 |---|---|---:|---|---|
-| 1.0.x | `feature/3.0.x` (this branch) | 8 | `1.0.x.*` | Legacy projects, Boot 2.x starter line |
+| 1.0.x | `feature/1.0.x` | 8 | `1.0.x.*` | Legacy projects, Boot 2.x starter line |
 | 2.0.x | `feature/2.0.x` | 17 | `2.0.x.*` | JDK 17 line |
-| 3.0.x | `feature/3.0.x` | 21 | `3.0.x.*` | New projects |
+| 3.0.x | `feature/3.0.x` (this branch) | 21 | `3.0.x.*` | New projects |
 
 <a id="4-architecture--modules"></a>
 ## 4. Architecture & Modules

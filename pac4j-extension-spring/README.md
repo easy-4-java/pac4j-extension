@@ -8,9 +8,9 @@ Spring Boot property-binding and URL utilities for pac4j OAuth / CAS clients
 [简体中文](./README.zh-CN.md)
 
 > **Current branch**: `feature/3.0.x`
-> **Version**: `3.0.x.x.20260630-SNAPSHOT`
-> **JDK baseline**: 8
-> **Project status**: maintenance (1.0.x line). Not yet published to Maven Central; artifacts are distributed via the Aliyun Maven repository and GitHub Releases.
+> **Version**: `3.0.x.20260630-SNAPSHOT`
+> **JDK baseline**: 21
+> **Project status**: active (3.0.x line). Artifacts are distributed via the Aliyun Maven repository.
 
 ## Table of Contents
 
@@ -70,7 +70,7 @@ This module is the property/utility layer a Spring Boot starter auto-configurati
 
 | Component | Version | Notes |
 |---|---:|---|
-| JDK | 21+ | 1.0.x line baseline |
+| JDK | 21+ | 3.0.x line baseline |
 | Maven | 3.0+ | Build requirement |
 | pac4j-core / pac4j-oauth | 4.5.7 | Pinned |
 | javax.servlet-api | 4.0.1 | Compile scope (`Pac4jUrlUtils` redirects) |
@@ -80,9 +80,9 @@ Version-line matrix:
 
 | Version line | Branch | JDK | Version pattern | Purpose |
 |---|---|---:|---|---|
-| 1.0.x | `feature/3.0.x` (this branch) | 8 | `1.0.x.*` | Legacy projects, Boot 2.x starter line (`javax.servlet`) |
-| 2.0.x | `feature/2.0.x` | 17 | `2.0.x.*` | Boot 3.x line (`jakarta.servlet`) |
-| 3.0.x | `feature/3.0.x` | 21 | `3.0.x.*` | New projects |
+| 1.0.x | `feature/1.0.x` | 8 | `1.0.x.*` | Legacy projects (`javax.servlet`) |
+| 2.0.x | `feature/2.0.x` and `main` | 17 | `2.0.x.*` | JDK 17 line (`javax.servlet`) |
+| 3.0.x | `feature/3.0.x` (this branch) | 21 | `3.0.x.*` | JDK 21 line (`javax.servlet`) |
 
 <a id="4-architecture--modules"></a>
 ## 4. Architecture & Modules
@@ -199,7 +199,7 @@ mvn clean verify
 | Branch | Version pattern | JDK | Maintenance policy |
 |---|---|---|---|
 | `feature/1.0.x` (this branch) | `1.0.x.*` | 8 | Compatibility fixes and JDK-8-safe dependency upgrades only (`javax.servlet`) |
-| `feature/2.0.x` | `2.0.x.*` | 17 | JDK 17 line (`jakarta.servlet`) |
+| `feature/2.0.x` | `2.0.x.*` | 17 | JDK 17 line (`javax.servlet`) |
 | `feature/3.0.x` | `3.0.x.*` | 21 | JDK 21 line |
 
 <a id="11-contributing--license"></a>

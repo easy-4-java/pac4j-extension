@@ -7,9 +7,9 @@
 面向 Spring Boot 的 pac4j OAuth / CAS 客户端属性绑定与 URL 工具
 
 > **当前分支**：`feature/3.0.x`
-> **版本**：`3.0.x.x.20260630-SNAPSHOT`
-> **JDK 基线**：8
-> **项目状态**：维护中（1.0.x 线）。尚未发布 Maven Central；制品通过 Aliyun Maven 仓库与 GitHub Releases 分发。
+> **版本**：`3.0.x.20260630-SNAPSHOT`
+> **JDK 基线**：21
+> **项目状态**：活跃维护（3.0.x 线）。制品通过阿里云 Maven 仓库分发。
 
 ## 目录
 
@@ -69,7 +69,7 @@
 
 | 组件 | 版本 | 说明 |
 |---|---:|---|
-| JDK | 21+ | 1.0.x 线基线 |
+| JDK | 21+ | 3.0.x 线基线 |
 | Maven | 3.0+ | 构建要求 |
 | pac4j-core / pac4j-oauth | 4.5.7 | 固定版本 |
 | javax.servlet-api | 4.0.1 | compile scope（`Pac4jUrlUtils` 重定向） |
@@ -79,9 +79,9 @@
 
 | 版本线 | 分支 | JDK | 版本模式 | 用途 |
 |---|---|---:|---|---|
-| 1.0.x | `feature/3.0.x`（当前分支） | 8 | `1.0.x.*` | 存量项目、Boot 2.x Starter 线（`javax.servlet`） |
-| 2.0.x | `feature/2.0.x` | 17 | `2.0.x.*` | Boot 3.x 线（`jakarta.servlet`） |
-| 3.0.x | `feature/3.0.x` | 21 | `3.0.x.*` | 新项目 |
+| 1.0.x | `feature/1.0.x` | 8 | `1.0.x.*` | 存量项目（`javax.servlet`） |
+| 2.0.x | `feature/2.0.x` 与 `main` | 17 | `2.0.x.*` | JDK 17 线（`javax.servlet`） |
+| 3.0.x | `feature/3.0.x`（当前分支） | 21 | `3.0.x.*` | JDK 21 线（`javax.servlet`） |
 
 <a id="4-architecture--modules"></a>
 ## 4. 架构与模块
@@ -198,7 +198,7 @@ mvn clean verify
 | 分支 | 版本模式 | JDK | 维护策略 |
 |---|---|---|---|
 | `feature/1.0.x`（当前分支） | `1.0.x.*` | 8 | 仅接受兼容性修复与 JDK 8 安全的依赖升级（`javax.servlet`） |
-| `feature/2.0.x` | `2.0.x.*` | 17 | JDK 17 线（`jakarta.servlet`） |
+| `feature/2.0.x` | `2.0.x.*` | 17 | JDK 17 线（`javax.servlet`） |
 | `feature/3.0.x` | `3.0.x.*` | 21 | JDK 21 线 |
 
 <a id="11-contributing--license"></a>
