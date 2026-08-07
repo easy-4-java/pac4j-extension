@@ -6,19 +6,20 @@
 
     <parent>
         <groupId>io.github.easy4j</groupId>
-        <artifactId>pac4j-extension-parent</artifactId>
+        <artifactId>pac4j-extension</artifactId>
         <version>${revision}</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>pac4j-biz</artifactId>
+    <artifactId>pac4j-extension-spring</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
-    <description>Pac4j authentication, authorization, credentials and profile extensions</description>
+    <description>Pac4j OAuth client properties and servlet URL utilities</description>
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>io.github.easy4j</groupId>
+            <artifactId>pac4j-extension-core</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
@@ -26,20 +27,12 @@
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
-            <artifactId>pac4j-config</artifactId>
+            <artifactId>pac4j-oauth</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.pac4j</groupId>
-            <artifactId>pac4j-http</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
