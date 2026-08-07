@@ -1,4 +1,4 @@
-# pac4j-extension
+# pac4j-extension-spring
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
@@ -29,7 +29,7 @@
 
 ### 1.1 是什么
 
-**pac4j-extension** 为 pac4j（4.5.7）的 OAuth 与 CAS OAuth 客户端提供面向 Spring Boot 的属性层：
+**pac4j-extension-spring** 为 pac4j 的 OAuth 与 CAS OAuth 客户端提供面向 Spring 的属性层：
 
 - `Pac4jOAuthClientProperties`——共享的 OAuth 客户端属性集（key / secret / callbackUrl、响应类型、scope、超时、自定义参数 / 属性、state）；
 - CAS OAuth（`Pac4jOAuthCasClientProperties`）、Facebook、OK.ru 与 Strava 客户端的专用子类；
@@ -89,7 +89,7 @@
 ```text
 [ Spring Boot 应用 ]
         |
-        | starter 自动装配消费 pac4j-extension
+        | starter 自动装配消费 pac4j-extension-spring
         v
 +------------------------------------------+
 | 属性     Pac4jOAuthClientProperties       |
@@ -119,7 +119,7 @@ Maven：
 ```xml
 <dependency>
     <groupId>io.github.easy4j</groupId>
-    <artifactId>pac4j-extension</artifactId>
+    <artifactId>pac4j-extension-spring</artifactId>
     <version>3.0.x.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
@@ -127,7 +127,7 @@ Maven：
 Gradle：
 
 ```groovy
-implementation 'io.github.easy4j:pac4j-extension:3.0.x.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:pac4j-extension-spring:3.0.x.20260630-SNAPSHOT'
 ```
 
 快照版本需要启用对应快照仓库（`pom.xml` 中 `distributionManagement` 指向 Aliyun Maven 仓库）。

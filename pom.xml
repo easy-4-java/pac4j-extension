@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.easy4j</groupId>
-    <artifactId>pac4j-extension-parent</artifactId>
+    <artifactId>pac4j-extension</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
@@ -148,8 +148,8 @@
     </dependencies>
 
     <modules>
-        <module>pac4j-extension</module>
-        <module>pac4j-biz</module>
+        <module>pac4j-extension-core</module>
+        <module>pac4j-extension-spring</module>
     </modules>
 
     <build>

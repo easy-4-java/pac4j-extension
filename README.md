@@ -1,11 +1,11 @@
 # pac4j-extension
 
-Multi-module extensions for pac4j. The repository keeps the existing public Maven coordinates while building and releasing them from one reactor.
+Multi-module extensions for pac4j, organized like `xxljob-extension` and released from one reactor.
 
 | Module | Maven artifact | Purpose |
 | --- | --- | --- |
-| `pac4j-extension` | `io.github.easy4j:pac4j-extension` | OAuth client properties and servlet URL utilities |
-| `pac4j-biz` | `io.github.easy4j:pac4j-biz` | Authentication, authorization, credentials and profile extensions |
+| `pac4j-extension-core` | `io.github.easy4j:pac4j-extension-core` | Authentication, authorization, credentials and profile extensions |
+| `pac4j-extension-spring` | `io.github.easy4j:pac4j-extension-spring` | Spring-facing OAuth client properties and servlet URL utilities |
 
 Release lines:
 
