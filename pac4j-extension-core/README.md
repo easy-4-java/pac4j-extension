@@ -2,15 +2,15 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/pac4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
+[![Java](https://img.shields.io/badge/Java-17-orange)](https://github.com/easy-4-java/pac4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 
 Business-oriented extensions for pac4j-core: captcha form login, token & signature clients, failure counters, authorizers and callback URL resolvers
 [简体中文](./README.zh-CN.md)
 
-> **Current branch**: `feature/3.0.x`
-> **Version**: `3.0.x.x.20260630-SNAPSHOT`
-> **JDK baseline**: 8
-> **Project status**: maintenance (1.0.x line). Not yet published to Maven Central; artifacts are distributed via the Aliyun Maven repository and GitHub Releases.
+> **Current release line**: `feature/2.0.x` and `main`
+> **Version**: `2.0.x.20260630-SNAPSHOT`
+> **JDK baseline**: 17
+> **Project status**: active (2.0.x line). Artifacts are distributed via the Aliyun Maven repository.
 
 ## Table of Contents
 
@@ -76,7 +76,7 @@ Business-oriented extensions for pac4j-core: captcha form login, token & signatu
 
 | Component | Version | Notes |
 |---|---:|---|
-| JDK | 21+ | 1.0.x line baseline |
+| JDK | 17+ | 2.0.x line baseline |
 | Maven | 3.0+ | Enforcer minimum |
 | pac4j-core / config / http | 4.5.7 | Pinned |
 | fastjson | 2.0.x | JSON handling |
@@ -87,8 +87,8 @@ Version-line matrix:
 
 | Version line | Branch | JDK | Version pattern | Purpose |
 |---|---|---:|---|---|
-| 1.0.x | `feature/3.0.x` (this branch) | 8 | `1.0.x.*` | Legacy projects, Boot 2.x starter line |
-| 2.0.x | `feature/2.0.x` | 17 | `2.0.x.*` | JDK 17 line |
+| 1.0.x | `feature/1.0.x` | 8 | `1.0.x.*` | Legacy projects, Boot 2.x starter line |
+| 2.0.x | `feature/2.0.x` and `main` (this release line) | 17 | `2.0.x.*` | JDK 17 line |
 | 3.0.x | `feature/3.0.x` | 21 | `3.0.x.*` | New projects |
 
 <a id="4-architecture--modules"></a>
