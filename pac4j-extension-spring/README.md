@@ -1,4 +1,4 @@
-# pac4j-extension
+# pac4j-extension-spring
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
@@ -30,7 +30,7 @@ Spring Boot property-binding and URL utilities for pac4j OAuth / CAS clients
 
 ### 1.1 What it is
 
-**pac4j-extension** provides the Spring Boot-facing property layer for pac4j (4.5.7) OAuth and CAS OAuth clients:
+**pac4j-extension-spring** provides the Spring-facing property layer for pac4j OAuth and CAS OAuth clients:
 
 - `Pac4jOAuthClientProperties` — the shared OAuth client property set (key/secret/callbackUrl, response type, scopes, timeouts, custom params/attributes, state);
 - Specialized subclasses for CAS OAuth (`Pac4jOAuthCasClientProperties`), Facebook, OK.ru and Strava clients;
@@ -90,7 +90,7 @@ Version-line matrix:
 ```text
 [ Spring Boot Application ]
         |
-        | starter auto-configuration consumes pac4j-extension
+        | starter auto-configuration consumes pac4j-extension-spring
         v
 +------------------------------------------+
 | Properties  Pac4jOAuthClientProperties    |
@@ -120,7 +120,7 @@ Maven:
 ```xml
 <dependency>
     <groupId>io.github.easy4j</groupId>
-    <artifactId>pac4j-extension</artifactId>
+    <artifactId>pac4j-extension-spring</artifactId>
     <version>3.0.x.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
@@ -128,7 +128,7 @@ Maven:
 Gradle:
 
 ```groovy
-implementation 'io.github.easy4j:pac4j-extension:3.0.x.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:pac4j-extension-spring:3.0.x.20260630-SNAPSHOT'
 ```
 
 Snapshot builds require an enabled snapshot repository (Aliyun Maven snapshot repository per `distributionManagement` in `pom.xml`).

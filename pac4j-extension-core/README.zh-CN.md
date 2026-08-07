@@ -1,8 +1,8 @@
-# pac4j-biz
+# pac4j-extension-core
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/pac4j-biz) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/pac4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 
 基于 pac4j-core 的业务扩展：验证码表单登录、Token 与签名客户端、失败计数、授权器与回调 URL 解析器
 
@@ -29,7 +29,7 @@
 
 ### 1.1 是什么
 
-**pac4j-biz** 是基于 [pac4j-core](https://github.com/pac4j/pac4j)（本线 4.5.7）的业务化扩展，在 pac4j 之上补充典型业务应用需要的可复用认证构件：
+**pac4j-extension-core** 是基于 [pac4j-core](https://github.com/pac4j/pac4j) 的业务化扩展，在 pac4j 之上补充典型业务应用需要的可复用认证构件：
 
 - 用户名 + 密码 + **验证码**表单登录（`UsernamePasswordCaptchaFormClient`）；
 - 面向 API 认证的 **Token** 与**签名**客户端 / 凭据 / 认证器；
@@ -96,7 +96,7 @@
 ```text
 [ Web / API 应用 ]
         |
-        | pac4j-biz + pac4j-core/config/http
+        | pac4j-extension-core + pac4j-core/config/http
         v
 +------------------------------------------+
 | 客户端   UsernamePasswordCaptchaForm      |
@@ -140,7 +140,7 @@ Maven：
 ```xml
 <dependency>
     <groupId>io.github.easy4j</groupId>
-    <artifactId>pac4j-biz</artifactId>
+    <artifactId>pac4j-extension-core</artifactId>
     <version>3.0.x.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
@@ -148,7 +148,7 @@ Maven：
 Gradle：
 
 ```groovy
-implementation 'io.github.easy4j:pac4j-biz:3.0.x.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:pac4j-extension-core:3.0.x.20260630-SNAPSHOT'
 ```
 
 快照版本需要启用对应快照仓库（`pom.xml` 中 `distributionManagement` 指向 Aliyun Maven 仓库）。

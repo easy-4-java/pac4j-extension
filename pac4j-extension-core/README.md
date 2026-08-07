@@ -1,8 +1,8 @@
-# pac4j-biz
+# pac4j-extension-core
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/pac4j-biz) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/pac4j-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](./LICENSE)
 
 Business-oriented extensions for pac4j-core: captcha form login, token & signature clients, failure counters, authorizers and callback URL resolvers
 [简体中文](./README.zh-CN.md)
@@ -30,7 +30,7 @@ Business-oriented extensions for pac4j-core: captcha form login, token & signatu
 
 ### 1.1 What it is
 
-**pac4j-biz** is a business-oriented extension built on [pac4j-core](https://github.com/pac4j/pac4j) (4.5.7 in this line). It adds reusable authentication building blocks that typical business applications need on top of pac4j:
+**pac4j-extension-core** is a business-oriented extension built on [pac4j-core](https://github.com/pac4j/pac4j). It adds reusable authentication building blocks that typical business applications need on top of pac4j:
 
 - Username + password + **captcha** form login (`UsernamePasswordCaptchaFormClient`);
 - **Token** and **signature** clients / credentials / authenticators for API-style auth;
@@ -97,7 +97,7 @@ Version-line matrix:
 ```text
 [ Web / API Application ]
         |
-        | pac4j-biz + pac4j-core/config/http
+        | pac4j-extension-core + pac4j-core/config/http
         v
 +------------------------------------------+
 | Clients    UsernamePasswordCaptchaForm    |
@@ -141,7 +141,7 @@ Maven:
 ```xml
 <dependency>
     <groupId>io.github.easy4j</groupId>
-    <artifactId>pac4j-biz</artifactId>
+    <artifactId>pac4j-extension-core</artifactId>
     <version>3.0.x.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
@@ -149,7 +149,7 @@ Maven:
 Gradle:
 
 ```groovy
-implementation 'io.github.easy4j:pac4j-biz:3.0.x.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:pac4j-extension-core:3.0.x.20260630-SNAPSHOT'
 ```
 
 Snapshot builds require an enabled snapshot repository (Aliyun Maven snapshot repository per `distributionManagement` in `pom.xml`).
