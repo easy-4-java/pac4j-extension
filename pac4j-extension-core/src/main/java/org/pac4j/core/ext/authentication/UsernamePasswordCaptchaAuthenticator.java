@@ -31,7 +31,7 @@ import org.pac4j.core.util.CommonHelper;
 import org.pac4j.core.util.Pac4jConstants;
 
 /**
- * TODO
+ * Authenticator that validates username/password credentials with optional captcha verification and retry limit enforcement.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class UsernamePasswordCaptchaAuthenticator implements Authenticator {

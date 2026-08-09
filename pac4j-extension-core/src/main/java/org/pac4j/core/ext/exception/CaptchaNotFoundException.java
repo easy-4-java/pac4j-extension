@@ -19,7 +19,7 @@ package org.pac4j.core.ext.exception;
 import org.pac4j.core.exception.TechnicalException;
 
 /**
- *
+ * Exception thrown when a required captcha value is missing from the authentication request.
  */
 public class CaptchaNotFoundException extends TechnicalException {
 	// ~ Constructors

@@ -16,7 +16,7 @@
 package org.pac4j.core.ext;
 
 /**
- * TODO
+ * Constants used throughout the pac4j extension framework, including parameter names for captcha, token, and signature authentication flows.
  * 
  * @author [@Loong Wan](https://github.com/loong10k)
  */

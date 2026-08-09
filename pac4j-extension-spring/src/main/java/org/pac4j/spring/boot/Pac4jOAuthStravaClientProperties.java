@@ -19,6 +19,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Configuration properties for Strava OAuth client integration in Spring Boot applications.
+ */
 @Getter
 @Setter
 @ToString

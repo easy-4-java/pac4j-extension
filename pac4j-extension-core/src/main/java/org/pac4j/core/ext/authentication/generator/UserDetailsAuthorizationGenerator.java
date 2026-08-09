@@ -24,7 +24,7 @@ import org.pac4j.core.profile.CommonProfile;
 import org.pac4j.core.profile.UserProfile;
 
 /**
- * TODO
+ * Authorization generator that loads user details (roles and permissions) from a {@link UserDetailsService} and adds them to the user profile.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class UserDetailsAuthorizationGenerator<U extends CommonProfile> implements AuthorizationGenerator {

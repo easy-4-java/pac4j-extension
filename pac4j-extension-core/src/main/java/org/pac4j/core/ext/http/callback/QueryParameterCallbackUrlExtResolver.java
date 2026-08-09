@@ -24,7 +24,7 @@ import org.pac4j.core.http.url.UrlResolver;
 import org.pac4j.core.util.CommonHelper;
 
 /**
- * TODO
+ * Callback URL resolver that appends the client name and custom parameters as query parameters, with optional fixed callback URL override.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 

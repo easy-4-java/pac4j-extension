@@ -23,7 +23,7 @@ import org.pac4j.core.context.HttpConstants.HTTP_METHOD;
 import org.pac4j.core.context.WebContext;
 
 /**
- * TODO
+ * Utility class providing helper methods for HTTP request inspection including AJAX detection, content type checking, and URL building.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class WebUtils {

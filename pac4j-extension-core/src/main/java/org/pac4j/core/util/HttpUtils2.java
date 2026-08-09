@@ -26,6 +26,9 @@ import org.pac4j.core.ext.utils.HttpHeaders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Extended HTTP utility class providing methods for building URLs, opening HTTP connections, and managing session IDs.
+ */
 public class HttpUtils2 {
 	
 	protected static final Logger logger = LoggerFactory.getLogger(HttpUtils2.class);

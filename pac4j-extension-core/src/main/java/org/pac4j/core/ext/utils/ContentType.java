@@ -1,5 +1,8 @@
 package org.pac4j.core.ext.utils;
 
+/**
+ * Constants for common HTTP content types and character encodings used throughout the pac4j extension framework.
+ */
 public abstract class ContentType {
 	
 	// constants

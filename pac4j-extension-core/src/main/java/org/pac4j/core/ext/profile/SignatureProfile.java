@@ -19,11 +19,10 @@ package org.pac4j.core.ext.profile;
 import org.pac4j.core.profile.CommonProfile;
 
 /**
- * <p>This class is the user profile for signature with appropriate getters.</p>
- * <p>It is returned by the {@link org.pac4j.core.ext.client.SignatureClient}.</p>
+ * User profile implementation for signature-based authentication, returned by the {@link org.pac4j.core.ext.client.SignatureClient}.
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class SignatureProfile extends CommonProfile {
-     
+
 }

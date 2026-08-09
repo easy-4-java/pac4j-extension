@@ -18,7 +18,7 @@ package org.pac4j.core.ext.exception;
 import org.pac4j.core.exception.TechnicalException;
 
 /**
- *
+ * Exception thrown when the provided captcha value does not match the expected value stored in the session.
  */
 public class CaptchaIncorrectException extends TechnicalException {
 	// ~ Constructors

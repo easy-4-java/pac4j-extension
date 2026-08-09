@@ -22,6 +22,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 
+/**
+ * Session-based captcha resolver that stores and validates captcha values using HTTP session attributes.
+ */
 public class SessionCaptchaResolver implements CaptchaResolver {
 
 	/**

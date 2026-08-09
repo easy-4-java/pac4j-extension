@@ -31,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * TODO
+ * Authenticator for signature-based credentials. Validates signatures by extracting user profiles from signed payloads.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public abstract class SignatureAuthenticator<C extends SignatureCredentials, P extends SignatureProfile, T extends Signature>

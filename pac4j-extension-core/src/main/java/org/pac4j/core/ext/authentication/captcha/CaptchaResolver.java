@@ -20,6 +20,9 @@ import java.util.Date;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 
+/**
+ * Interface for captcha validation and storage implementations, supporting session-based or external captcha services.
+ */
 public interface CaptchaResolver {
 
 	/**

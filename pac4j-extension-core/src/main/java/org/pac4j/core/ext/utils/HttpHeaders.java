@@ -7,6 +7,9 @@ package org.pac4j.core.ext.utils;
  *
  * @since 4.1
  */
+/**
+ * Constants for standard HTTP header names used in HTTP communication within the pac4j extension framework.
+ */
 public final class HttpHeaders {
 
     private HttpHeaders() {

@@ -21,6 +21,9 @@ import org.pac4j.core.authorization.authorizer.ProfileAuthorizer;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.profile.UserProfile;
 
+/**
+ * Authorizer implementation for internal authentication scenarios that delegates profile authorization checks.
+ */
 public class Pac4jInternalAuthorizer extends ProfileAuthorizer<UserProfile> {
 
 	@Override

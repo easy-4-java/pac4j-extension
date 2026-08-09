@@ -21,7 +21,7 @@ import org.pac4j.core.profile.definition.CommonProfileDefinition;
 import org.pac4j.core.profile.factory.ProfileFactory;
 
 /**
- * Token profile definition.
+ * Abstract profile definition for token-based authentication, providing methods to retrieve user profiles from token-authenticated API calls.
  */
 public abstract class TokenProfileDefinition<P extends TokenProfile, T extends Token> extends CommonProfileDefinition<P> {
 

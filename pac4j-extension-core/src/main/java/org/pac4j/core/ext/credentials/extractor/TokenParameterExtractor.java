@@ -30,6 +30,9 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Credentials extractor that retrieves token values from request parameters or HTTP headers for token-based authentication.
+ */
 public class TokenParameterExtractor extends ParameterExtractor {
 
 	protected final Logger logger = LoggerFactory.getLogger(getClass());
