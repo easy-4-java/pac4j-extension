@@ -20,7 +20,7 @@ import org.pac4j.core.ext.Pac4jExtConstants;
 import org.pac4j.core.util.Pac4jConstants;
 
 /**
- * TODO
+ * Credentials implementation that extends username/password authentication with an optional captcha field for bot protection.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 @SuppressWarnings("serial")

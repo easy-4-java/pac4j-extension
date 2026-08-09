@@ -18,6 +18,9 @@ package org.pac4j.core.ext.authentication;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 
+/**
+ * Failure counter implementation that stores and increments retry counts in the HTTP session for server-side tracking.
+ */
 public class AuthenticatingFailureSessionCounter implements AuthenticatingFailureCounter {
 
 

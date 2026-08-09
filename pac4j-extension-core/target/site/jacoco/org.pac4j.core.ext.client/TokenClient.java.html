@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TokenClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">io.github.easy4j:pac4j-extension-core</a> &gt; <a href="index.source.html" class="el_package">org.pac4j.core.ext.client</a> &gt; <span class="el_source">TokenClient.java</span></div><h1>TokenClient.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2018, Loong Wan (https://github.com/loong10k).
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.pac4j.core.ext.client;
+
+import org.pac4j.core.client.DirectClient;
+import org.pac4j.core.ext.credentials.authenticator.TokenAuthenticator;
+import org.pac4j.core.ext.credentials.extractor.TokenParameterExtractor;
+import org.pac4j.core.ext.profile.Token;
+import org.pac4j.core.ext.profile.TokenProfile;
+import org.pac4j.core.ext.profile.creator.TokenProfileCreator;
+import org.pac4j.core.profile.creator.ProfileCreator;
+import org.pac4j.core.util.CommonHelper;
+
+/**
+ * Direct client for token-based authentication. Extracts tokens from request parameters or headers and validates them against a remote service.
+ */
+public abstract class TokenClient&lt;P extends TokenProfile, T extends Token&gt; extends DirectClient {
+
+<span class="nc" id="L32">    private String parameterName = &quot;&quot;;</span>
+
+
+<span class="nc" id="L35">    private boolean supportGetRequest = false;</span>
+
+
+<span class="nc" id="L38">    private boolean supportPostRequest = true;</span>
+    /**
+
+     * The location of the client login URL, i.e. https://localhost:8080/myapp/login
+
+     */
+    private String loginUrl;
+
+
+<span class="nc" id="L47">    public TokenClient() {</span>
+<span class="nc" id="L48">    }</span>
+
+<span class="nc" id="L50">    public TokenClient(final String parameterName, final TokenAuthenticator&lt;P, T&gt; tokenAuthenticator) {</span>
+<span class="nc" id="L51">        this.parameterName = parameterName;</span>
+<span class="nc" id="L52">        setAuthenticatorIfUndefined(tokenAuthenticator);</span>
+<span class="nc" id="L53">    }</span>
+
+    public TokenClient(final String parameterName,
+                           final TokenAuthenticator&lt;P, T&gt; tokenAuthenticator,
+<span class="nc" id="L57">                           final ProfileCreator profileCreator) {</span>
+<span class="nc" id="L58">        this.parameterName = parameterName;</span>
+<span class="nc" id="L59">        setAuthenticatorIfUndefined(tokenAuthenticator);</span>
+<span class="nc" id="L60">        setProfileCreatorIfUndefined(profileCreator);</span>
+<span class="nc" id="L61">    }</span>
+
+
+    @Override
+    protected void internalInit(boolean forceReinit) {
+<span class="nc" id="L66">        setProfileCreatorIfUndefined(new TokenProfileCreator());</span>
+<span class="nc" id="L67">        setCredentialsExtractorIfUndefined(new TokenParameterExtractor(this.getParameterName(), this.isSupportGetRequest(), this.isSupportPostRequest()));</span>
+
+
+        // ensures components have been properly initialized
+<span class="nc" id="L71">        CommonHelper.assertNotNull(&quot;credentialsExtractor&quot;, getCredentialsExtractor());</span>
+<span class="nc" id="L72">        CommonHelper.assertNotNull(&quot;authenticator&quot;, getAuthenticator());</span>
+<span class="nc" id="L73">        CommonHelper.assertNotNull(&quot;profileCreator&quot;, getProfileCreator());</span>
+<span class="nc" id="L74">    }</span>
+
+
+    public String getParameterName() {
+<span class="nc" id="L78">        return parameterName;</span>
+    }
+
+    public void setParameterName(String parameterName) {
+<span class="nc" id="L82">        this.parameterName = parameterName;</span>
+<span class="nc" id="L83">    }</span>
+
+    public boolean isSupportGetRequest() {
+<span class="nc" id="L86">        return supportGetRequest;</span>
+    }
+
+    public void setSupportGetRequest(boolean supportGetRequest) {
+<span class="nc" id="L90">        this.supportGetRequest = supportGetRequest;</span>
+<span class="nc" id="L91">    }</span>
+
+    public boolean isSupportPostRequest() {
+<span class="nc" id="L94">        return supportPostRequest;</span>
+    }
+
+    public void setSupportPostRequest(boolean supportPostRequest) {
+<span class="nc" id="L98">        this.supportPostRequest = supportPostRequest;</span>
+<span class="nc" id="L99">    }</span>
+
+
+    public void setLoginUrl(String loginUrl) {
+<span class="nc" id="L103">        this.loginUrl = loginUrl;</span>
+<span class="nc" id="L104">    }</span>
+
+
+    public String getLoginUrl() {
+<span class="nc" id="L108">        return loginUrl;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

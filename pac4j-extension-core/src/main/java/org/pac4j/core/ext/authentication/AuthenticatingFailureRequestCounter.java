@@ -23,6 +23,9 @@ import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.ext.Pac4jExtConstants;
 
 
+/**
+ * Failure counter implementation that reads retry counts from request parameters rather than maintaining server-side state.
+ */
 public class AuthenticatingFailureRequestCounter implements AuthenticatingFailureCounter {
 
     private String retryTimesKeyParameter = Pac4jExtConstants.RETRY_TIMES_KEY_PARAM_NAME;

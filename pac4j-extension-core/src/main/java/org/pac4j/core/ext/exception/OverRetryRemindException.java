@@ -19,7 +19,7 @@ package org.pac4j.core.ext.exception;
 import org.pac4j.core.exception.TechnicalException;
 
 /**
- *
+ * Exception thrown when the number of failed login attempts has reached the configured retry limit, requiring captcha verification.
  */
 public class OverRetryRemindException extends TechnicalException {
     // ~ Constructors

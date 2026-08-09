@@ -35,7 +35,7 @@ import org.pac4j.core.util.Pac4jConstants;
 import org.pac4j.core.util.HttpActionHelper;
 
 /**
- * TODO
+ * Indirect client for form-based login with username, password, and captcha support. Handles redirection to login pages and error handling.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })

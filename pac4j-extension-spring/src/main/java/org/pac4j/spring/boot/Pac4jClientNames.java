@@ -16,7 +16,7 @@
 package org.pac4j.spring.boot;
 
 /**
- * TODO
+ * Constants defining well-known pac4j client names for CAS, form-based, and basic authentication client types.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public interface Pac4jClientNames {

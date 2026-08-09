@@ -45,6 +45,9 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Authenticator for token-based credentials. Validates tokens by retrieving user profiles from a configured REST API endpoint.
+ */
 public abstract class TokenAuthenticator<P extends TokenProfile, T extends Token>
     extends TokenProfileDefinitionAware<P, T> implements Authenticator {
 

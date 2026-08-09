@@ -18,7 +18,7 @@ package org.pac4j.core.ext.exception;
 import org.pac4j.core.exception.TechnicalException;
 
 /**
- * TODO
+ * Exception thrown when the specified username cannot be found during the authentication process.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 @SuppressWarnings("serial")

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NoParameterCallbackUrlExtResolver.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">io.github.easy4j:pac4j-extension-core</a> &gt; <a href="index.source.html" class="el_package">org.pac4j.core.ext.http.callback</a> &gt; <span class="el_source">NoParameterCallbackUrlExtResolver.java</span></div><h1>NoParameterCallbackUrlExtResolver.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2018, Loong Wan (https://github.com/loong10k).
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.pac4j.core.ext.http.callback;
+
+import org.pac4j.core.context.WebContext;
+import org.pac4j.core.http.callback.NoParameterCallbackUrlResolver;
+import org.pac4j.core.http.url.UrlResolver;
+
+/**
+ * Callback URL resolver that optionally overrides the computed URL with a fixed callback URL for external authentication flows.
+ */
+public class NoParameterCallbackUrlExtResolver extends NoParameterCallbackUrlResolver {
+
+
+    /**
+     * If &lt;code&gt;true&lt;/code&gt;, will always redirect to the value of {@code callbackUrl}
+     * (defaults to &lt;code&gt;false&lt;/code&gt;).
+     */
+<span class="fc" id="L32">    private boolean alwaysUseCallbackUrl = false;</span>
+    /**
+
+     * The location of the client callback URL, i.e. https://localhost:8080/myapp/callback
+
+     */
+    private String callbackUrl;
+
+
+<span class="fc" id="L41">    public NoParameterCallbackUrlExtResolver() {</span>
+<span class="fc" id="L42">    }</span>
+
+
+<span class="fc" id="L45">    public NoParameterCallbackUrlExtResolver(final boolean alwaysUseCallbackUrl, final  String callbackUrl) {</span>
+<span class="fc" id="L46">        this.alwaysUseCallbackUrl = alwaysUseCallbackUrl;</span>
+<span class="fc" id="L47">        this.callbackUrl = callbackUrl;</span>
+<span class="fc" id="L48">    }</span>
+
+
+    @Override
+    public String compute(final UrlResolver urlResolver, final String url, final String clientName, final WebContext context) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        return this.isAlwaysUseCallbackUrl() ? this.getCallbackUrl() : urlResolver.compute(url, context);</span>
+    }
+
+
+    public String getCallbackUrl() {
+<span class="fc" id="L58">        return callbackUrl;</span>
+    }
+
+
+    public boolean isAlwaysUseCallbackUrl() {
+<span class="fc" id="L63">        return alwaysUseCallbackUrl;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

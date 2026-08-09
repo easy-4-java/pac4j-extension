@@ -1,0 +1,16 @@
+org.pac4j.core.ext
+org.pac4j.core.ext.authentication
+org.pac4j.core.ext.authentication.captcha
+org.pac4j.core.ext.authentication.generator
+org.pac4j.core.ext.authentication.userdetails
+org.pac4j.core.ext.client
+org.pac4j.core.ext.credentials
+org.pac4j.core.ext.credentials.authenticator
+org.pac4j.core.ext.credentials.extractor
+org.pac4j.core.ext.exception
+org.pac4j.core.ext.http.callback
+org.pac4j.core.ext.profile
+org.pac4j.core.ext.profile.creator
+org.pac4j.core.ext.profile.definition
+org.pac4j.core.ext.utils
+org.pac4j.core.util

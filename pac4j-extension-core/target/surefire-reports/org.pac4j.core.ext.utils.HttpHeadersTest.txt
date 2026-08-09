@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.pac4j.core.ext.utils.HttpHeadersTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in org.pac4j.core.ext.utils.HttpHeadersTest

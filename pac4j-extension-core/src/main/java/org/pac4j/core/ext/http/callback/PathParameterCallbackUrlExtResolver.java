@@ -20,7 +20,7 @@ import org.pac4j.core.http.callback.PathParameterCallbackUrlResolver;
 import org.pac4j.core.http.url.UrlResolver;
 
 /**
- * TODO
+ * Callback URL resolver that embeds the client name as a path parameter, with optional fixed callback URL override.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class PathParameterCallbackUrlExtResolver extends PathParameterCallbackUrlResolver {

@@ -1,0 +1,75 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-core/target/pac4j-extension-core-2.0.x.20260630-SNAPSHOT.jar:/Users/wandl/.m2/repository/com/alibaba/fastjson/2.0.64/fastjson-2.0.64.jar:/Users/wandl/.m2/repository/com/alibaba/fastjson2/fastjson2-extension/2.0.64/fastjson2-extension-2.0.64.jar:/Users/wandl/.m2/repository/com/alibaba/fastjson2/fastjson2/2.0.64/fastjson2-2.0.64.jar:/Users/wandl/.m2/repository/org/pac4j/pac4j-config/6.5.5/pac4j-config-6.5.5.jar:/Users/wandl/.m2/repository/com/zaxxer/HikariCP/7.1.0/HikariCP-7.1.0.jar:/Users/wandl/.m2/repository/org/pac4j/pac4j-http/6.5.5/pac4j-http-6.5.5.jar:/Users/wandl/.m2/repository/org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar:/Users/wandl/.m2/repository/org/pac4j/pac4j-core/6.5.5/pac4j-core-6.5.5.jar:/Users/wandl/.m2/repository/org/apache/commons/commons-text/1.15.0/commons-text-1.15.0.jar:/Users/wandl/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.22.1/jackson-databind-2.22.1.jar:/Users/wandl/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.22/jackson-annotations-2.22.jar:/Users/wandl/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.22.1/jackson-core-2.22.1.jar:/Users/wandl/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.22.1/jackson-datatype-jsr310-2.22.1.jar:/Users/wandl/.m2/repository/org/pac4j/pac4j-oauth/6.5.5/pac4j-oauth-6.5.5.jar:/Users/wandl/.m2/repository/commons-codec/commons-codec/1.22.0/commons-codec-1.22.0.jar:/Users/wandl/.m2/repository/com/github/scribejava/scribejava-apis/8.3.3/scribejava-apis-8.3.3.jar:/Users/wandl/.m2/repository/com/github/scribejava/scribejava-core/8.3.3/scribejava-core-8.3.3.jar:/Users/wandl/.m2/repository/com/github/scribejava/scribejava-java8/8.3.3/scribejava-java8-8.3.3.jar:/Users/wandl/.m2/repository/org/reflections/reflections/0.10.2/reflections-0.10.2.jar:/Users/wandl/.m2/repository/org/javassist/javassist/3.28.0-GA/javassist-3.28.0-GA.jar:/Users/wandl/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/wandl/.m2/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar:/Users/wandl/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar:/Users/wandl/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+17
+-sourcepath
+'/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/src/main/java:/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:none
+-doctitle
+'io.github.easy4j:pac4j-extension-spring 2.0.x.20260630-SNAPSHOT API'
+-linkoffline
+'https://github.com/easy-4-java/pac4j-extension/pac4j-extension-core/apidocs' '/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-core/target/reports/apidocs'
+-use
+-version
+-windowtitle
+'io.github.easy4j:pac4j-extension-spring 2.0.x.20260630-SNAPSHOT API'
+org.pac4j.spring.boot
+org.pac4j.spring.boot.utils
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-core/target/pac4j-extension-core-2.0.x.20260630-SNAPSHOT.jar = 1786275426357
+/Users/wandl/.m2/repository/com/alibaba/fastjson/2.0.64/fastjson-2.0.64.jar = 1786116989282
+/Users/wandl/.m2/repository/com/alibaba/fastjson2/fastjson2-extension/2.0.64/fastjson2-extension-2.0.64.jar = 1786116989629
+/Users/wandl/.m2/repository/com/alibaba/fastjson2/fastjson2/2.0.64/fastjson2-2.0.64.jar = 1786108962182
+/Users/wandl/.m2/repository/org/pac4j/pac4j-config/6.5.5/pac4j-config-6.5.5.jar = 1786116990169
+/Users/wandl/.m2/repository/com/zaxxer/HikariCP/7.1.0/HikariCP-7.1.0.jar = 1786116989839
+/Users/wandl/.m2/repository/org/pac4j/pac4j-http/6.5.5/pac4j-http-6.5.5.jar = 1786116990230
+/Users/wandl/.m2/repository/org/apache/commons/commons-lang3/3.20.0/commons-lang3-3.20.0.jar = 1786108879930
+/Users/wandl/.m2/repository/org/pac4j/pac4j-core/6.5.5/pac4j-core-6.5.5.jar = 1786116981549
+/Users/wandl/.m2/repository/org/apache/commons/commons-text/1.15.0/commons-text-1.15.0.jar = 1786108888153
+/Users/wandl/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.22.1/jackson-databind-2.22.1.jar = 1786110251059
+/Users/wandl/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.22/jackson-annotations-2.22.jar = 1786109056540
+/Users/wandl/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.22.1/jackson-core-2.22.1.jar = 1786110248089
+/Users/wandl/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.22.1/jackson-datatype-jsr310-2.22.1.jar = 1786116982619
+/Users/wandl/.m2/repository/org/pac4j/pac4j-oauth/6.5.5/pac4j-oauth-6.5.5.jar = 1786116982999
+/Users/wandl/.m2/repository/commons-codec/commons-codec/1.22.0/commons-codec-1.22.0.jar = 1786108879149
+/Users/wandl/.m2/repository/com/github/scribejava/scribejava-apis/8.3.3/scribejava-apis-8.3.3.jar = 1786109547216
+/Users/wandl/.m2/repository/com/github/scribejava/scribejava-core/8.3.3/scribejava-core-8.3.3.jar = 1786109545987
+/Users/wandl/.m2/repository/com/github/scribejava/scribejava-java8/8.3.3/scribejava-java8-8.3.3.jar = 1786109546350
+/Users/wandl/.m2/repository/org/reflections/reflections/0.10.2/reflections-0.10.2.jar = 1786109546013
+/Users/wandl/.m2/repository/org/javassist/javassist/3.28.0-GA/javassist-3.28.0-GA.jar = 1786109547625
+/Users/wandl/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar = 1786108853302
+/Users/wandl/.m2/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar = 1786109017893
+/Users/wandl/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar = 1786108881064
+/Users/wandl/.m2/repository/org/slf4j/slf4j-api/2.0.18/slf4j-api-2.0.18.jar = 1786108877849
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/src/main/java = 1786118564432
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/generated-sources/annotations = 1786275427653
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/constant-values.html = 1786275429590
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/tag-search-index.js = 1786275429605
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/overview-tree.html = 1786275429599
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/module-search-index.js = 1786275429604
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/index.html = 1786275429599
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/package-search-index.js = 1786275429605
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/index-all.html = 1786275429610
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/allpackages-index.html = 1786275429604
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/member-search-index.js = 1786275429605
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/overview-summary.html = 1786275429611
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/help-doc.html = 1786275429612
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/element-list = 1786275429582
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/search.html = 1786275429611
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/allclasses-index.html = 1786275429604
+/Users/wandl/workspaces/workspace-github-easy-4-java/pac4j-extension/pac4j-extension-spring/target/reports/apidocs/type-search-index.js = 1786275429605

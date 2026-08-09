@@ -18,7 +18,7 @@ package org.pac4j.core.ext.credentials;
 import org.pac4j.core.credentials.Credentials;
 
 /**
- * TODO
+ * Credentials implementation that holds a payload and its corresponding signature for signature-based authentication.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 @SuppressWarnings("serial")

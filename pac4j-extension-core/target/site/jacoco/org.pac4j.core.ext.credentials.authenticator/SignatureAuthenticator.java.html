@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SignatureAuthenticator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">io.github.easy4j:pac4j-extension-core</a> &gt; <a href="index.source.html" class="el_package">org.pac4j.core.ext.credentials.authenticator</a> &gt; <span class="el_source">SignatureAuthenticator.java</span></div><h1>SignatureAuthenticator.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2018, Loong Wan (https://github.com/loong10k).
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.pac4j.core.ext.credentials.authenticator;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+
+import org.pac4j.core.context.CallContext;
+import org.pac4j.core.credentials.Credentials;
+import org.pac4j.core.credentials.authenticator.Authenticator;
+import org.pac4j.core.exception.CredentialsException;
+import org.pac4j.core.ext.credentials.SignatureCredentials;
+import org.pac4j.core.ext.profile.Signature;
+import org.pac4j.core.ext.profile.SignatureProfile;
+import org.pac4j.core.ext.profile.definition.SignatureProfileDefinitionAware;
+import org.pac4j.core.util.CommonHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Authenticator for signature-based credentials. Validates signatures by extracting user profiles from signed payloads.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
+public abstract class SignatureAuthenticator&lt;C extends SignatureCredentials, P extends SignatureProfile, T extends Signature&gt;
+    extends SignatureProfileDefinitionAware&lt;P, T&gt; implements Authenticator {
+
+
+<span class="nc" id="L41">    protected final Logger logger = LoggerFactory.getLogger(getClass());</span>
+<span class="nc" id="L42">    private String charset = StandardCharsets.UTF_8.name();</span>
+
+
+<span class="nc" id="L45">    public SignatureAuthenticator() {</span>
+<span class="nc" id="L46">    }</span>
+
+
+    @Override
+    protected void internalInit(boolean forceReinit) {
+<span class="nc" id="L51">        CommonHelper.assertNotNull(&quot;profileDefinition&quot;, getProfileDefinition());</span>
+<span class="nc" id="L52">    }</span>
+
+
+    @Override
+    public Optional&lt;Credentials&gt; validate(CallContext callContext, Credentials credentials) {
+
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        if (credentials == null) {</span>
+<span class="nc" id="L60">            throw new CredentialsException(&quot;No credential&quot;);</span>
+        }
+
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (!(credentials instanceof SignatureCredentials)) {</span>
+<span class="nc" id="L65">            throw new CredentialsException(&quot;Unsupported credential type: &quot; + credentials.getClass().getName());</span>
+        }
+        @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L68">        C signatureCredentials = (C) credentials;</span>
+<span class="nc" id="L69">        String payload = signatureCredentials.getPayload();</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (CommonHelper.isBlank(payload)) {</span>
+<span class="nc" id="L71">            throw new CredentialsException(&quot;Payload cannot be blank&quot;);</span>
+        }
+
+<span class="nc" id="L74">        final Optional&lt;P&gt; profile = Optional.of(getProfileDefinition().extractUserProfile(payload, signatureCredentials.getSignature()));</span>
+
+
+<span class="nc" id="L77">        logger.debug(&quot;profile: {}&quot;, profile.get());</span>
+<span class="nc" id="L78">        signatureCredentials.setUserProfile(profile.get());</span>
+<span class="nc" id="L79">        return Optional.of(signatureCredentials);</span>
+
+
+    }
+
+    public String getCharset() {
+<span class="nc" id="L85">        return charset;</span>
+    }
+
+    public void setCharset(String charset) {
+<span class="nc" id="L89">        this.charset = charset;</span>
+<span class="nc" id="L90">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

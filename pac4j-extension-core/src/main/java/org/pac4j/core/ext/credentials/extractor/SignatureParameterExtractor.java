@@ -30,6 +30,9 @@ import org.pac4j.core.util.CommonHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Credentials extractor that retrieves signature and payload values from request parameters for signature-based authentication.
+ */
 public class SignatureParameterExtractor implements CredentialsExtractor {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());

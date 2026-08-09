@@ -22,6 +22,9 @@ import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 import org.pac4j.core.profile.UserProfile;
 
+/**
+ * Authorizer implementation for external authentication scenarios that delegates profile authorization checks.
+ */
 public class Pac4jExternalAuthorizer extends ProfileAuthorizer {
 
     @Override

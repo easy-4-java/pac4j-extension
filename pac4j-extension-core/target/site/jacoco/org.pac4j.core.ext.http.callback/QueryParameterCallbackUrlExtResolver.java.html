@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>QueryParameterCallbackUrlExtResolver.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">io.github.easy4j:pac4j-extension-core</a> &gt; <a href="index.source.html" class="el_package">org.pac4j.core.ext.http.callback</a> &gt; <span class="el_source">QueryParameterCallbackUrlExtResolver.java</span></div><h1>QueryParameterCallbackUrlExtResolver.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2018, Loong Wan (https://github.com/loong10k).
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.pac4j.core.ext.http.callback;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.pac4j.core.context.WebContext;
+import org.pac4j.core.http.callback.QueryParameterCallbackUrlResolver;
+import org.pac4j.core.http.url.UrlResolver;
+import org.pac4j.core.util.CommonHelper;
+
+/**
+ * Callback URL resolver that appends the client name and custom parameters as query parameters, with optional fixed callback URL override.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
+
+public class QueryParameterCallbackUrlExtResolver extends QueryParameterCallbackUrlResolver {
+
+    /**
+     * If &lt;code&gt;true&lt;/code&gt;, will always redirect to the value of {@code callbackUrl}
+     * (defaults to &lt;code&gt;false&lt;/code&gt;).
+     */
+<span class="fc" id="L37">    private boolean alwaysUseCallbackUrl = false;</span>
+    /**
+
+     * The location of the client callback URL, i.e. https://localhost:8080/myapp/callback
+
+     */
+    private String callbackUrl;
+
+
+<span class="fc" id="L46">    private Map&lt;String, String&gt; customParams = new HashMap&lt;&gt;();</span>
+
+<span class="fc" id="L48">    public QueryParameterCallbackUrlExtResolver() {</span>
+<span class="fc" id="L49">    }</span>
+
+
+<span class="fc" id="L52">    public QueryParameterCallbackUrlExtResolver(final boolean alwaysUseCallbackUrl, final  String callbackUrl, Map&lt;String, String&gt; customParams) {</span>
+<span class="fc" id="L53">        this.alwaysUseCallbackUrl = alwaysUseCallbackUrl;</span>
+<span class="fc" id="L54">        this.callbackUrl = callbackUrl;</span>
+<span class="fc" id="L55">        this.customParams = customParams;</span>
+<span class="fc" id="L56">    }</span>
+
+
+    @Override
+    public String compute(final UrlResolver urlResolver, final String url, final String clientName, final WebContext context) {
+
+
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">        String newUrl = this.isAlwaysUseCallbackUrl() ? this.getCallbackUrl() : urlResolver.compute(url, context);</span>
+
+
+<span class="pc bpc" id="L66" title="2 of 4 branches missed.">        if (newUrl != null &amp;&amp; !newUrl.contains(this.getClientNameParameter() + '=')) {</span>
+<span class="fc" id="L67">            newUrl = CommonHelper.addParameter(newUrl, this.getClientNameParameter(), clientName);</span>
+        }
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        for (final Map.Entry&lt;String, String&gt; entry : this.customParams.entrySet()) {</span>
+<span class="fc" id="L70">            newUrl = CommonHelper.addParameter(newUrl, entry.getKey(), entry.getValue());</span>
+<span class="fc" id="L71">        }</span>
+<span class="fc" id="L72">        return newUrl;</span>
+    }
+
+
+    public String getCallbackUrl() {
+<span class="fc" id="L77">        return callbackUrl;</span>
+    }
+
+
+    public boolean isAlwaysUseCallbackUrl() {
+<span class="fc" id="L82">        return alwaysUseCallbackUrl;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

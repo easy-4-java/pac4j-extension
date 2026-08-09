@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HttpUtils2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">io.github.easy4j:pac4j-extension-core</a> &gt; <a href="index.source.html" class="el_package">org.pac4j.core.util</a> &gt; <span class="el_source">HttpUtils2.java</span></div><h1>HttpUtils2.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2018, Loong Wan (https://github.com/loong10k).
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.pac4j.core.util;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Map;
+
+import org.pac4j.core.context.HttpConstants;
+import org.pac4j.core.ext.utils.HttpHeaders;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Extended HTTP utility class providing methods for building URLs, opening HTTP connections, and managing session IDs.
+ */
+<span class="nc" id="L32">public class HttpUtils2 {</span>
+
+
+<span class="fc" id="L35">    protected static final Logger logger = LoggerFactory.getLogger(HttpUtils2.class);</span>
+
+
+    public static String buildURL(String baseURL, Map&lt;String, String&gt; paramsMap){
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if(paramsMap == null){</span>
+<span class="fc" id="L40">            return baseURL;</span>
+        }
+<span class="fc" id="L42">        StringBuilder builder = new StringBuilder(baseURL);</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for (String key : paramsMap.keySet()) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            builder.append(builder.indexOf(&quot;?&quot;) &gt; 0 ? &quot;&amp;&quot; : &quot;?&quot;).append(key).append(&quot;=&quot;).append(String.valueOf(paramsMap.get(key)));</span>
+<span class="fc" id="L45">        }</span>
+<span class="fc" id="L46">        return builder.toString();</span>
+    }
+
+
+    public static String getSessionID(HttpURLConnection httpConn){
+        // Get Session ID
+<span class="fc" id="L52">        String key = &quot;&quot;;</span>
+<span class="fc" id="L53">        String sessionId = &quot;&quot;;</span>
+<span class="pc bpc" id="L54" title="1 of 2 branches missed.">        if (httpConn != null) {</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            for (int i = 1; (key = httpConn.getHeaderFieldKey(i)) != null; i++) {</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                if (key.equalsIgnoreCase(&quot;set-cookie&quot;)) {</span>
+<span class="nc" id="L57">                    sessionId = httpConn.getHeaderField(key);</span>
+<span class="nc" id="L58">                    sessionId = sessionId.substring(0, sessionId.indexOf(&quot;;&quot;));</span>
+                }
+            }
+        }
+<span class="fc" id="L62">        return sessionId;</span>
+    }
+
+
+    public static HttpURLConnection openGetConnection(final URL url) throws IOException {
+<span class="nc" id="L67">        return HttpUtils.openConnection(url, HttpConstants.HTTP_METHOD.GET.name(), null);</span>
+    }
+
+
+    public static HttpURLConnection openGetConnection(String url, final Map&lt;String, String&gt; params) throws IOException {
+<span class="nc" id="L72">        url = buildURL(url, params);</span>
+<span class="nc" id="L73">        logger.debug(&quot;url : {}&quot;, url);</span>
+<span class="nc" id="L74">        return HttpUtils.openConnection(new URL(url), HttpConstants.HTTP_METHOD.GET.name(), null);</span>
+    }
+
+    public static HttpURLConnection openGetConnection(String url, final Map&lt;String, String&gt; headers, final Map&lt;String,String&gt; params) throws IOException {
+<span class="nc" id="L78">        url = buildURL(url, params);</span>
+<span class="nc" id="L79">        logger.debug(&quot;url : {}&quot;, url);</span>
+<span class="nc" id="L80">        return HttpUtils.openConnection(new URL(url), HttpConstants.HTTP_METHOD.GET.name(), headers);</span>
+    }
+
+
+    public static HttpURLConnection openPostConnection(String url, final Map&lt;String, String&gt; headers , final Map&lt;String,String&gt; params) throws IOException{
+<span class="nc" id="L85">        logger.debug(&quot;url : {}&quot;, url);</span>
+        // 此处的urlConnection对象实际上是根据URL的 请求协议(此处是http)生成的URLConnection类 的子类HttpURLConnection,故此处最好将其转化 为HttpURLConnection类型的对象,以便用到HttpURLConnection更多的API.如下:
+
+<span class="nc" id="L88">        HttpURLConnection httpConn = HttpUtils.openPostConnection(new URL(url), headers);</span>
+
+        /*
+
+            Post请求的OutputStream实际上不是网络流，而是写入内存，在 getInputStream中才真正把写道流里面的内容作为正文与根据之前的配置生成的http request头合并成真正的http request，并在此时才真正向服务器发送。
+            HttpURLConnection.setChunkedStreamingMode函 数可以改变这个模式，设置了ChunkedStreamingMode后，不再等待OutputStream关闭后生成完整的http request一次过发送，而是先发送http request头，
+                           正文内容则是网路流的方式实时传送到服务器。实际上是不告诉服务器http正文的长度，这种模式适用于向服务器传送较大的或者是不容易 获取长度的数据，如文件上传。
+                           与readContentFromPost()最大的不同，设置了块大小为5字节
+
+        */
+<span class="nc" id="L98">        httpConn.setChunkedStreamingMode(5);</span>
+
+        /*
+
+         * 注意，下面的getOutputStream函数工作方式于在readContentFromPost()里面的不同 ；在readContentFromPost()里面该函数仍在准备http request，没有向服务器发送任何数据
+
+         * 而在这里由于设置了ChunkedStreamingMode，getOutputStream函数会根据connect之前的配置  生成http request头，先发送到服务器。
+
+         */
+
+
+
+        //组织参数内容
+<span class="nc" id="L111">        StringBuilder paramsBuilder = new StringBuilder();</span>
+<span class="nc" id="L112">        boolean isfirst = true;</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        for (String paramName : params.keySet()) {</span>
+            // 正文，正文内容其实跟get的URL中 '? '后的参数字符串一致
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if(isfirst) {</span>
+<span class="nc" id="L116">                paramsBuilder.append(HttpUtils.encodeQueryParam(paramName, String.valueOf(params.get(paramName))));</span>
+
+<span class="nc" id="L118">                isfirst = false;</span>
+            }else {
+<span class="nc" id="L120">                paramsBuilder.append(&quot;&amp;&quot;).append(HttpUtils.encodeQueryParam(paramName, String.valueOf(params.get(paramName))));</span>
+
+            }
+<span class="nc" id="L123">        }</span>
+
+
+        // 获得上传信息的字节大小以及长度
+
+        //byte[] postdata = buffer.toString().getBytes();
+
+<span class="nc" id="L130">        httpConn.setRequestProperty(HttpHeaders.CONTENT_LENGTH, String.valueOf(paramsBuilder.length()));</span>
+        // 连接，从urlPost.openConnection()至此的配置必须要在connect之前完成，要注意的是connection.getOutputStream会隐含的进行connect(即：如同调用上面的connect()方法，  所以在开发中不调用上述的connect()也可以)。
+
+<span class="nc" id="L133">        httpConn.connect();</span>
+        //建立输入流，向指向的URL传入参数
+<span class="nc" id="L135">        DataOutputStream output = new DataOutputStream(httpConn.getOutputStream());</span>
+        // DataOutputStream.writeBytes将字符串中的16位的unicode字符以8位的字符形式写到流里面
+<span class="nc" id="L137">        output.writeBytes(params.toString());</span>
+        //output.write(postdata , 0 , postdata.length );
+        // flush输出流的缓冲
+
+<span class="nc" id="L141">        output.flush();</span>
+        // 到此时服务器已经收到了完整的http request了，而在readContentFromPost()函数里，要等到下一句服务器才能收到http请求。
+<span class="nc" id="L143">        output.close();</span>
+
+
+
+<span class="nc" id="L147">        return httpConn;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

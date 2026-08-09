@@ -33,6 +33,9 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Credentials extractor that retrieves username, password, and captcha values from form parameters or JSON request bodies.
+ */
 public class UsernamePasswordCaptchaCredentialsExtractor implements CredentialsExtractor {
 
 

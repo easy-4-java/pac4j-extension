@@ -26,6 +26,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Base configuration properties for OAuth client settings in Spring Boot applications.
+ */
 @Getter
 @Setter
 @ToString

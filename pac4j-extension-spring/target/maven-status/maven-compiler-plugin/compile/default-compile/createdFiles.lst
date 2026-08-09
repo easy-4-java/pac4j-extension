@@ -1,0 +1,7 @@
+org/pac4j/spring/boot/Pac4jOAuthCasClientProperties.class
+org/pac4j/spring/boot/utils/Pac4jUrlUtils.class
+org/pac4j/spring/boot/Pac4jOAuthStravaClientProperties.class
+org/pac4j/spring/boot/Pac4jOAuthFacebookClientProperties.class
+org/pac4j/spring/boot/Pac4jOAuthOkClientProperties.class
+org/pac4j/spring/boot/Pac4jClientNames.class
+org/pac4j/spring/boot/Pac4jOAuthClientProperties.class

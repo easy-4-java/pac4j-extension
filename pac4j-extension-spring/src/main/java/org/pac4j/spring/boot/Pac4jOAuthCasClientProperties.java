@@ -15,6 +15,9 @@
  */
 package org.pac4j.spring.boot;
 
+/**
+ * Configuration properties for CAS OAuth client integration in Spring Boot applications.
+ */
 public class Pac4jOAuthCasClientProperties extends Pac4jOAuthClientProperties {
 
 	 /**

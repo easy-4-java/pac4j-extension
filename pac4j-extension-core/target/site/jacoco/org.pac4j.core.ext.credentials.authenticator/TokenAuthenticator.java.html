@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TokenAuthenticator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">io.github.easy4j:pac4j-extension-core</a> &gt; <a href="index.source.html" class="el_package">org.pac4j.core.ext.credentials.authenticator</a> &gt; <span class="el_source">TokenAuthenticator.java</span></div><h1>TokenAuthenticator.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2018, Loong Wan (https://github.com/loong10k).
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.pac4j.core.ext.credentials.authenticator;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+import org.pac4j.core.context.HttpConstants;
+import org.pac4j.core.context.CallContext;
+import org.pac4j.core.context.WebContext;
+import org.pac4j.core.credentials.Credentials;
+import org.pac4j.core.credentials.TokenCredentials;
+import org.pac4j.core.credentials.authenticator.Authenticator;
+import org.pac4j.core.exception.CredentialsException;
+import org.pac4j.core.exception.HttpCommunicationException;
+import org.pac4j.core.ext.profile.Token;
+import org.pac4j.core.ext.profile.TokenProfile;
+import org.pac4j.core.ext.profile.TokenProfileDefinition;
+import org.pac4j.core.ext.profile.definition.TokenProfileDefinitionAware;
+import org.pac4j.core.ext.utils.HttpHeaders;
+import org.pac4j.core.util.CommonHelper;
+import org.pac4j.core.util.HttpUtils;
+import org.pac4j.core.util.HttpUtils2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.alibaba.fastjson.JSONObject;
+
+/**
+ * Authenticator for token-based credentials. Validates tokens by retrieving user profiles from a configured REST API endpoint.
+ */
+public abstract class TokenAuthenticator&lt;P extends TokenProfile, T extends Token&gt;
+    extends TokenProfileDefinitionAware&lt;P, T&gt; implements Authenticator {
+
+
+<span class="nc" id="L55">    protected final Logger logger = LoggerFactory.getLogger(getClass());</span>
+<span class="nc" id="L56">    protected final String DEFAULT_USER_AGENT = &quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0&quot;;</span>
+<span class="nc" id="L57">    protected final String DEFAULT_ACCEPT_HEADER = &quot;application/json, text/plain, */*&quot;;</span>
+
+
+    /* Map containing user defined headers */
+<span class="nc" id="L61">    private Map&lt;String, String&gt; customHeaders = new HashMap&lt;&gt;();</span>
+    /* Map containing user defined parameters */
+<span class="nc" id="L63">    private Map&lt;String, String&gt; customParams = new HashMap&lt;&gt;();</span>
+
+
+<span class="nc" id="L66">    private String charset = StandardCharsets.UTF_8.name();</span>
+
+<span class="nc" id="L68">    private boolean encodeParams = true;</span>
+
+
+<span class="nc" id="L71">    private String parameterName = &quot;token&quot;;</span>
+
+
+<span class="nc" id="L74">    public TokenAuthenticator() {</span>
+<span class="nc" id="L75">    }</span>
+
+
+<span class="nc" id="L78">    public TokenAuthenticator(String parameterName, boolean encodeParams) {</span>
+<span class="nc" id="L79">        this.parameterName = parameterName;</span>
+<span class="nc" id="L80">        this.encodeParams = encodeParams;</span>
+<span class="nc" id="L81">    }</span>
+
+
+    @Override
+    protected void internalInit(boolean forceReinit) {
+<span class="nc" id="L86">        CommonHelper.assertNotNull(&quot;parameterName&quot;, parameterName);</span>
+<span class="nc" id="L87">        CommonHelper.assertNotNull(&quot;profileDefinition&quot;, getProfileDefinition());</span>
+<span class="nc" id="L88">    }</span>
+
+
+    @Override
+    public Optional&lt;Credentials&gt; validate(CallContext callContext, Credentials credentials) {
+
+
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (credentials == null) {</span>
+<span class="nc" id="L96">            throw new CredentialsException(&quot;No credential&quot;);</span>
+        }
+
+
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (!(credentials instanceof TokenCredentials)) {</span>
+<span class="nc" id="L101">            throw new CredentialsException(&quot;Unsupported credential type: &quot; + credentials.getClass().getName());</span>
+        }
+<span class="nc" id="L103">        TokenCredentials tokenCredentials = (TokenCredentials) credentials;</span>
+<span class="nc" id="L104">        String token = tokenCredentials.getToken();</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (CommonHelper.isBlank(token)) {</span>
+<span class="nc" id="L106">            throw new CredentialsException(&quot;Token cannot be blank&quot;);</span>
+        }
+
+
+<span class="nc" id="L110">        final Optional&lt;P&gt; profile = retrieveUserProfileFromToken(callContext.webContext(), tokenCredentials);</span>
+
+
+<span class="nc" id="L113">        logger.debug(&quot;profile: {}&quot;, profile.get());</span>
+<span class="nc" id="L114">        tokenCredentials.setUserProfile(profile.get());</span>
+<span class="nc" id="L115">        return Optional.of(tokenCredentials);</span>
+
+
+    }
+
+
+    /**
+     * Get the access token from Auth credentials.
+     *
+     * @param credentials credentials
+     * @return the access token
+     */
+    protected abstract T getAccessToken(final TokenCredentials credentials);
+
+
+    /**
+     * Retrieve the user profile from the access token.
+     *
+     * @param context the web context
+     * @param credentials the credentials
+     * @return the user profile
+     */
+    protected Optional&lt;P&gt; retrieveUserProfileFromToken(final WebContext context, final TokenCredentials credentials) {
+
+
+<span class="nc" id="L140">        final T accessToken = getAccessToken(credentials);</span>
+
+
+<span class="nc" id="L143">        logger.debug(&quot;accessToken: {}&quot;, accessToken.getRawResponse());</span>
+
+
+<span class="nc" id="L146">        TokenProfileDefinition&lt;P, T&gt; profileDefinition = getProfileDefinition();</span>
+<span class="nc" id="L147">        CommonHelper.assertNotNull(&quot;profileDefinition&quot;, profileDefinition);</span>
+
+
+<span class="nc" id="L150">        final String profileUrl = profileDefinition.getProfileUrl(context, accessToken);</span>
+
+
+<span class="nc" id="L153">        final String body = retrieveUserProfileFromRestApi(context, accessToken, profileUrl);</span>
+<span class="nc" id="L154">        logger.debug(&quot;body: {}&quot;, body);</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (body == null) {</span>
+<span class="nc" id="L156">            throw new HttpCommunicationException(&quot;No data found for accessToken: &quot; + accessToken);</span>
+        }
+
+<span class="nc" id="L159">        final P profile = (P) profileDefinition.extractUserProfile(body);</span>
+<span class="nc" id="L160">        logger.debug(&quot;Authentication success for token: {}&quot;, accessToken.getRawResponse());</span>
+<span class="nc" id="L161">        return Optional.of(profile);</span>
+    }
+
+
+    /**
+     * Return the body from the REST API, passing the token auth.
+     * To be overridden using another HTTP client if necessary.
+     *
+    * @param context the web context
+     * @param accessToken the access token
+     * @param profileUrl  url of the data
+     * @return the response body
+     */
+    protected String retrieveUserProfileFromRestApi(final WebContext context, final T accessToken, final String profileUrl) {
+
+
+<span class="nc" id="L177">        logger.debug(&quot;accessToken: {} / profileUrl: {}&quot;, accessToken.getRawResponse(), profileUrl);</span>
+<span class="nc" id="L178">        final long t0 = System.currentTimeMillis();</span>
+
+
+<span class="nc" id="L181">        HttpURLConnection connection = null;</span>
+        try {
+
+
+<span class="nc" id="L185">            Map&lt;String, String&gt; finalHeaders = this.finalHeaders(context, accessToken, profileUrl, getCustomHeaders());</span>
+<span class="nc" id="L186">                logger.debug(&quot;finalHeaders: {} &quot;, JSONObject.toJSONString(finalHeaders));</span>
+
+
+<span class="nc" id="L189">                Map&lt;String, String&gt; finalParams = this.finalParams(context, accessToken, profileUrl, getCustomParams());</span>
+<span class="nc" id="L190">            logger.debug(&quot;finalParams: {} &quot;, JSONObject.toJSONString(finalParams));</span>
+
+
+<span class="nc" id="L193">            connection = HttpUtils2.openGetConnection(profileUrl, finalHeaders, finalParams);</span>
+
+
+<span class="nc" id="L196">            int code = connection.getResponseCode();</span>
+<span class="nc" id="L197">            final long t1 = System.currentTimeMillis();</span>
+<span class="nc" id="L198">            logger.debug(&quot;Request took: &quot; + (t1 - t0) + &quot; ms for: &quot; + profileUrl);</span>
+<span class="nc bnc" id="L199" title="All 2 branches missed.">            if (code == 200) {</span>
+<span class="nc" id="L200">                return HttpUtils.readBody(connection);</span>
+<span class="nc bnc" id="L201" title="All 4 branches missed.">            } else if (code == 401 || code == 403) {</span>
+<span class="nc" id="L202">                logger.info(&quot;Authentication failure for token: {} -&gt; {}&quot;, accessToken.getRawResponse(), HttpUtils.buildHttpErrorMessage(connection));</span>
+<span class="nc" id="L203">                return null;</span>
+            } else {
+<span class="nc" id="L205">                logger.warn(&quot;Unexpected error for token: {} -&gt; {}&quot;, accessToken.getRawResponse(), HttpUtils.buildHttpErrorMessage(connection));</span>
+<span class="nc" id="L206">                return null;</span>
+            }
+<span class="nc" id="L208">        } catch (final IOException e) {</span>
+<span class="nc" id="L209">            throw new HttpCommunicationException(&quot;Error getting body: &quot; + e.getMessage());</span>
+        } finally {
+<span class="nc" id="L211">            HttpUtils.closeConnection(connection);</span>
+        }
+    }
+
+    protected Map&lt;String, String&gt; finalHeaders(final WebContext context,final T token, final String url, final Map&lt;String, String&gt; headers ) {
+
+
+<span class="nc" id="L218">         final Map&lt;String,String&gt; finalHeaders = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L219">         finalHeaders.putAll(headers);</span>
+
+
+         /*
+
+           * 配置本次连接的Content-type，配置为application/x-www-form-urlencoded的 意思是正文是urlencoded编码过的form参数，下面我们可以看到我们对正文内容使用URLEncoder.encode进行编码
+           */
+
+<span class="nc bnc" id="L227" title="All 2 branches missed.">         if(!headers.containsKey(HttpConstants.CONTENT_TYPE_HEADER)) {</span>
+<span class="nc" id="L228">             headers.put( HttpConstants.CONTENT_TYPE_HEADER, HttpConstants.APPLICATION_FORM_ENCODED_HEADER_VALUE);</span>
+         }
+         // 设置通用的请求属性 (模拟浏览器请求头)
+
+<span class="nc bnc" id="L232" title="All 2 branches missed.">         if(!headers.containsKey(HttpConstants.ACCEPT_HEADER)) {</span>
+<span class="nc" id="L233">             headers.put( HttpConstants.ACCEPT_HEADER, context.getRequestHeader(HttpConstants.ACCEPT_HEADER).orElse(DEFAULT_ACCEPT_HEADER));</span>
+
+         }
+<span class="nc bnc" id="L236" title="All 2 branches missed.">         if(!headers.containsKey(HttpHeaders.USER_AGENT)) {</span>
+<span class="nc" id="L237">             headers.put(HttpHeaders.USER_AGENT, context.getRequestHeader(HttpHeaders.USER_AGENT).orElse(DEFAULT_USER_AGENT));</span>
+         }
+
+
+<span class="nc" id="L241">         return finalHeaders;</span>
+
+
+    }
+
+
+    protected Map&lt;String, String&gt; finalParams(final WebContext context,final T token, final String url, final Map&lt;String,String&gt; params) {
+
+
+<span class="nc" id="L250">        final Map&lt;String,String&gt; finalParams = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L251">        finalParams.putAll(params);</span>
+
+
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        if(this.isEncodeParams()) {</span>
+           // 对自定义参数进行转码
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            for (String paramName : finalParams.keySet()) {</span>
+                try {
+<span class="nc" id="L258">                    finalParams.put(paramName, URLEncoder.encode(params.get(paramName), getCharset()));</span>
+<span class="nc" id="L259">               } catch (UnsupportedEncodingException e) {</span>
+<span class="nc" id="L260">               }</span>
+<span class="nc" id="L261">            }</span>
+        }
+
+
+<span class="nc" id="L265">        finalParams.put(getParameterName(), token.getRawResponse());</span>
+
+
+<span class="nc" id="L268">        return finalParams;</span>
+
+
+   }
+
+    public Map&lt;String, String&gt; getCustomHeaders() {
+<span class="nc" id="L274">        return customHeaders;</span>
+    }
+
+    public void setCustomHeaders(Map&lt;String, String&gt; customHeaders) {
+<span class="nc" id="L278">        this.customHeaders = customHeaders;</span>
+<span class="nc" id="L279">    }</span>
+
+    public Map&lt;String, String&gt; getCustomParams() {
+<span class="nc" id="L282">        return customParams;</span>
+    }
+
+    public void setCustomParams(Map&lt;String, String&gt; customParams) {
+<span class="nc" id="L286">        this.customParams = customParams;</span>
+<span class="nc" id="L287">    }</span>
+
+    public String getParameterName() {
+<span class="nc" id="L290">        return parameterName;</span>
+    }
+
+    public void setParameterName(String parameterName) {
+<span class="nc" id="L294">        this.parameterName = parameterName;</span>
+<span class="nc" id="L295">    }</span>
+
+    public String getCharset() {
+<span class="nc" id="L298">        return charset;</span>
+    }
+
+    public void setCharset(String charset) {
+<span class="nc" id="L302">        this.charset = charset;</span>
+<span class="nc" id="L303">    }</span>
+
+    public boolean isEncodeParams() {
+<span class="nc" id="L306">        return encodeParams;</span>
+    }
+
+    public void setEncodeParams(boolean encodeParams) {
+<span class="nc" id="L310">        this.encodeParams = encodeParams;</span>
+<span class="nc" id="L311">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

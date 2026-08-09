@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Rest 模式登录认证绑定的参数对象Model
+ * Data transfer object representing a REST-mode login request with username, password, and optional captcha fields.
  */
 public class AuthenticationRequest {
 

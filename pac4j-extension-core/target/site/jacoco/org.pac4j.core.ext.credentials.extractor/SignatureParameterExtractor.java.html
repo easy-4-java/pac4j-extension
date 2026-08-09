@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SignatureParameterExtractor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">io.github.easy4j:pac4j-extension-core</a> &gt; <a href="index.source.html" class="el_package">org.pac4j.core.ext.credentials.extractor</a> &gt; <span class="el_source">SignatureParameterExtractor.java</span></div><h1>SignatureParameterExtractor.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2018, Loong Wan (https://github.com/loong10k).
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package org.pac4j.core.ext.credentials.extractor;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Optional;
+
+import org.apache.commons.lang3.StringUtils;
+import org.pac4j.core.context.WebContext;
+import org.pac4j.core.context.CallContext;
+import org.pac4j.core.credentials.Credentials;
+import org.pac4j.core.credentials.extractor.CredentialsExtractor;
+import org.pac4j.core.exception.CredentialsException;
+import org.pac4j.core.ext.Pac4jExtConstants;
+import org.pac4j.core.ext.credentials.SignatureCredentials;
+import org.pac4j.core.util.CommonHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Credentials extractor that retrieves signature and payload values from request parameters for signature-based authentication.
+ */
+public class SignatureParameterExtractor implements CredentialsExtractor {
+
+<span class="fc" id="L38">    protected final Logger logger = LoggerFactory.getLogger(getClass());</span>
+
+
+<span class="fc" id="L41">    private String signatureParamName = Pac4jExtConstants.SIGNATURE_PARAM;</span>
+
+
+<span class="fc" id="L44">    private boolean supportGetRequest = true;</span>
+
+    private boolean supportPostRequest;
+
+
+<span class="fc" id="L49">    private String charset = StandardCharsets.UTF_8.name();</span>
+
+
+    public SignatureParameterExtractor(String signatureParamName) {
+<span class="nc" id="L53">        this(signatureParamName, false, true, StandardCharsets.UTF_8.name());</span>
+<span class="nc" id="L54">    }</span>
+
+
+    public SignatureParameterExtractor(String signatureParamName, String charset) {
+<span class="nc" id="L58">        this(signatureParamName, false, true, charset);</span>
+<span class="nc" id="L59">    }</span>
+
+
+    public SignatureParameterExtractor(String signatureParamName, boolean supportGetRequest,
+<span class="fc" id="L63">            boolean supportPostRequest, String charset) {</span>
+<span class="fc" id="L64">        this.signatureParamName = signatureParamName;</span>
+<span class="fc" id="L65">        this.supportGetRequest = supportGetRequest;</span>
+<span class="fc" id="L66">        this.supportPostRequest = supportPostRequest;</span>
+<span class="fc" id="L67">        this.charset = charset;</span>
+<span class="fc" id="L68">    }</span>
+
+
+    @Override
+    public Optional&lt;Credentials&gt; extract(CallContext callContext) {
+<span class="fc" id="L73">        WebContext context = callContext.webContext();</span>
+
+
+<span class="fc" id="L76">        logger.debug(&quot;supportGetRequest: {}&quot;, this.supportGetRequest);</span>
+<span class="fc" id="L77">        logger.debug(&quot;supportPostRequest: {}&quot;, this.supportPostRequest);</span>
+
+
+<span class="pc bpc" id="L80" title="3 of 4 branches missed.">        if (&quot;GET&quot;.equalsIgnoreCase(context.getRequestMethod()) &amp;&amp; !supportGetRequest) {</span>
+<span class="nc" id="L81">            throw new CredentialsException(&quot;GET requests not supported&quot;);</span>
+<span class="pc bpc" id="L82" title="2 of 4 branches missed.">        } else if (&quot;POST&quot;.equalsIgnoreCase(context.getRequestMethod()) &amp;&amp; !supportPostRequest) {</span>
+<span class="nc" id="L83">            throw new CredentialsException(&quot;POST requests not supported&quot;);</span>
+        }
+
+
+<span class="fc" id="L87">        logger.debug(&quot;signatureParamName: {}&quot;, this.signatureParamName);</span>
+
+
+<span class="fc" id="L90">        String paylod = context.getRequestContent();</span>
+<span class="fc" id="L91">        Optional&lt;String&gt; signature = context.getRequestParameter(this.signatureParamName);</span>
+<span class="pc bpc" id="L92" title="2 of 4 branches missed.">        if ( StringUtils.isEmpty(paylod) || !signature.isPresent()) {</span>
+<span class="nc" id="L93">            return Optional.empty();</span>
+        }
+
+
+<span class="fc" id="L97">        logger.debug(&quot;paylod : {}&quot;, paylod);</span>
+<span class="fc" id="L98">        logger.debug(&quot;signature : {}&quot;, signature.get());</span>
+<span class="fc" id="L99">        return Optional.of(new SignatureCredentials(paylod, signature.get()));</span>
+    }
+
+
+    @Override
+    public String toString() {
+<span class="nc" id="L105">        return getClass().getSimpleName() + &quot;{signatureParamName='&quot; + signatureParamName</span>
+                + &quot;', supportGetRequest=&quot; + supportGetRequest + &quot;, supportPostRequest=&quot; + supportPostRequest
+                + &quot;, charset='&quot; + charset + &quot;'}&quot;;
+    }
+
+
+    public boolean isSupportGetRequest() {
+<span class="nc" id="L112">        return supportGetRequest;</span>
+    }
+
+    public void setSupportGetRequest(boolean supportGetRequest) {
+<span class="nc" id="L116">        this.supportGetRequest = supportGetRequest;</span>
+<span class="nc" id="L117">    }</span>
+
+    public boolean isSupportPostRequest() {
+<span class="nc" id="L120">        return supportPostRequest;</span>
+    }
+
+    public void setSupportPostRequest(boolean supportPostRequest) {
+<span class="nc" id="L124">        this.supportPostRequest = supportPostRequest;</span>
+<span class="nc" id="L125">    }</span>
+
+    public String getCharset() {
+<span class="nc" id="L128">        return charset;</span>
+    }
+
+    public void setCharset(String charset) {
+<span class="nc" id="L132">        this.charset = charset;</span>
+<span class="nc" id="L133">    }</span>
+
+    public String getSignatureParamName() {
+<span class="nc" id="L136">        return signatureParamName;</span>
+    }
+
+    public void setSignatureParamName(String signatureParamName) {
+<span class="nc" id="L140">        this.signatureParamName = signatureParamName;</span>
+<span class="nc" id="L141">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

@@ -19,6 +19,9 @@ import org.pac4j.core.context.WebContext;
 import org.pac4j.core.http.callback.NoParameterCallbackUrlResolver;
 import org.pac4j.core.http.url.UrlResolver;
 
+/**
+ * Callback URL resolver that optionally overrides the computed URL with a fixed callback URL for external authentication flows.
+ */
 public class NoParameterCallbackUrlExtResolver extends NoParameterCallbackUrlResolver {
 
 

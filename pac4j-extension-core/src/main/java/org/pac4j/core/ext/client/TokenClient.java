@@ -24,6 +24,9 @@ import org.pac4j.core.ext.profile.creator.TokenProfileCreator;
 import org.pac4j.core.profile.creator.ProfileCreator;
 import org.pac4j.core.util.CommonHelper;
 
+/**
+ * Direct client for token-based authentication. Extracts tokens from request parameters or headers and validates them against a remote service.
+ */
 public abstract class TokenClient<P extends TokenProfile, T extends Token> extends DirectClient {
 
     private String parameterName = "";
