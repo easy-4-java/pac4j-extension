@@ -20,7 +20,7 @@ import java.util.Set;
 
 
 /**
- * TODO
+ * Interface representing authenticated user details including username, password, roles, permissions, and account status flags.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public interface UserDetails extends Serializable {

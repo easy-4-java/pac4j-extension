@@ -20,7 +20,7 @@ import org.pac4j.core.profile.definition.CommonProfileDefinition;
 import org.pac4j.core.profile.factory.ProfileFactory;
 
 /**
- * Signature profile definition.
+ * Abstract profile definition for signature-based authentication, providing methods to extract user profiles from signed payloads.
  */
 public abstract class SignatureProfileDefinition<P extends SignatureProfile, T extends Signature> extends CommonProfileDefinition {
 

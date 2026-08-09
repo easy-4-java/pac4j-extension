@@ -22,6 +22,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Configuration properties for Facebook OAuth client integration in Spring Boot applications.
+ */
 @Getter
 @Setter
 @ToString

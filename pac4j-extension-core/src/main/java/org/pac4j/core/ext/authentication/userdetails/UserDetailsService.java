@@ -21,7 +21,7 @@ import org.pac4j.core.ext.exception.UsernameNotFoundException;
 import org.pac4j.core.profile.UserProfile;
 
 /**
- * TODO
+ * Interface for loading user details by username, similar to Spring Security's UserDetailsService pattern.
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public interface UserDetailsService<U extends UserProfile> {

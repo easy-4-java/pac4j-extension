@@ -7,6 +7,9 @@ package org.pac4j.core.ext.utils;
  *
  * @since 4.1
  */
+/**
+ * Constants for standard HTTP header names used in HTTP communication within the pac4j extension framework.
+ */
 public final class HttpHeaders {
 
     private HttpHeaders() {
@@ -177,10 +180,8 @@ public final class HttpHeaders {
     /** RFC 1945 (HTTP/1.0) Section 10.16, RFC 2616 (HTTP/1.1) Section 14.47 */
     public static final String WWW_AUTHENTICATE = "WWW-Authenticate";
 
-    public static final String X_FORWARDED_FOR = "x-forwarded-for";
-
-
-    public static final String X_REQUESTED_WITH = "X-Requested-With";
-
-
+	public static final String X_FORWARDED_FOR = "x-forwarded-for";
+	
+	public static final String X_REQUESTED_WITH = "X-Requested-With";
+	
 }

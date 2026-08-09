@@ -28,6 +28,9 @@ import org.pac4j.core.ext.profile.creator.SignatureProfileCreator;
 import org.pac4j.core.profile.creator.ProfileCreator;
 import org.pac4j.core.util.CommonHelper;
 
+/**
+ * Direct client for signature-based authentication. Extracts signatures from request parameters and validates the signed payload.
+ */
 public abstract class SignatureClient<C extends SignatureCredentials, P extends SignatureProfile, T extends Signature>
         extends DirectClient {
 

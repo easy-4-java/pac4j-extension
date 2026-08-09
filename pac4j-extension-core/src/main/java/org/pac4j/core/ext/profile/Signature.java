@@ -18,7 +18,7 @@ package org.pac4j.core.ext.profile;
 import java.io.Serializable;
 
 /**
- * Represents an abstract signature
+ * Abstract base class representing a cryptographic signature, providing access to the raw response and parameter extraction.
  */
 public abstract class Signature implements Serializable {
 

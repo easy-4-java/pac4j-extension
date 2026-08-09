@@ -18,6 +18,9 @@ package org.pac4j.core.ext.authentication;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 
+/**
+ * Interface for counting authentication failure attempts, used to enforce retry limits and trigger captcha requirements.
+ */
 public interface AuthenticatingFailureCounter {
 
     int get(WebContext context, SessionStore sessionStore, String retryTimesKeyAttribute);

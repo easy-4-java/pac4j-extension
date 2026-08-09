@@ -20,6 +20,9 @@ import java.util.Date;
 import org.pac4j.core.context.WebContext;
 import org.pac4j.core.context.session.SessionStore;
 
+/**
+ * No-op captcha resolver that always returns true for validation. Used when captcha verification is not required.
+ */
 public class NullCaptchaResolver implements CaptchaResolver {
 
     @Override

@@ -19,12 +19,10 @@ package org.pac4j.core.ext.profile;
 import org.pac4j.core.profile.CommonProfile;
 
 /**
- * <p>This class is the user profile for token with appropriate getters.</p>
- * <p>It is returned by the {@link org.pac4j.core.ext.client.TokenClient}.</p>
+ * User profile implementation for token-based authentication, returned by the {@link org.pac4j.core.ext.client.TokenClient}.
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class TokenProfile extends CommonProfile {
-
 
 }

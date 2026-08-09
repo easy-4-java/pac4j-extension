@@ -24,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Utility class for URL manipulation including redirect URL construction and URL encoding for pac4j authentication flows.
+ */
 public class Pac4jUrlUtils {
 
 	 private static final Logger LOGGER = LoggerFactory.getLogger(Pac4jUrlUtils.class);
