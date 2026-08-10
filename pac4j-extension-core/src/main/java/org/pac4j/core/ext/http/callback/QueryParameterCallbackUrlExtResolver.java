@@ -25,7 +25,7 @@ import org.pac4j.core.util.CommonHelper;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 
 public class QueryParameterCallbackUrlExtResolver extends QueryParameterCallbackUrlResolver {

@@ -22,7 +22,7 @@ import org.pac4j.core.profile.CommonProfile;
  * <p>This class is the user profile for token with appropriate getters.</p>
  * <p>It is returned by the {@link org.pac4j.core.ext.client.TokenClient}.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class TokenProfile extends CommonProfile {
 

@@ -24,7 +24,7 @@ import org.pac4j.core.profile.creator.ProfileCreator;
 
 /**
  * Signature profile creator.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 public class SignatureProfileCreator implements ProfileCreator {
 

@@ -36,7 +36,7 @@ import org.pac4j.core.util.HttpActionHelper;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class UsernamePasswordCaptchaFormClient extends IndirectClient {

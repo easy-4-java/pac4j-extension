@@ -19,7 +19,7 @@ import org.pac4j.core.credentials.Credentials;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @SuppressWarnings("serial")
 public class SignatureCredentials extends Credentials {

@@ -21,7 +21,7 @@ import org.pac4j.core.util.Pac4jConstants;
 
 /**
  * TODO
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  */
 @SuppressWarnings("serial")
 public class UsernamePasswordCaptchaCredentials extends Credentials {
