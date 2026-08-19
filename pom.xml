@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>io.github.easy4j</groupId>
     <artifactId>pac4j-extension</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
-
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Pac4j extension multi-module parent</description>
     <url>https://github.com/easy-4-java/pac4j-extension</url>
-
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -19,7 +15,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
     <developers>
         <developer>
             <name>Loong Wan</name>
@@ -31,14 +26,12 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
-
     <scm>
         <connection>scm:git:https://github.com/easy-4-java/pac4j-extension.git</connection>
         <developerConnection>scm:git:https://github.com/easy-4-java/pac4j-extension.git</developerConnection>
         <url>https://github.com/easy-4-java/pac4j-extension</url>
         <tag>${project.artifactId}</tag>
     </scm>
-
     <distributionManagement>
         <repository>
             <id>2624322-release-6F6h6R</id>
@@ -49,7 +42,6 @@
             <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
         </snapshotRepository>
     </distributionManagement>
-
     <properties>
         <!-- ═══ 第一段: 基础属性（自然排序）═══ -->
         <java.version>17</java.version>
@@ -79,10 +71,7 @@
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-    
     </properties>
-
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -137,7 +126,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -149,12 +137,10 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
-
     <modules>
         <module>pac4j-extension-core</module>
         <module>pac4j-extension-spring</module>
     </modules>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -308,7 +294,6 @@
             </plugin>
         </plugins>
     </build>
-
     <profiles>
         <profile>
             <id>central</id>
