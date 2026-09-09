@@ -320,8 +320,8 @@
             </build>
         </profile>
     </profiles>
-    <modules>
-        <module>pac4j-extension-core</module>
-        <module>pac4j-extension-spring</module>
-    </modules>
+    <subprojects>
+        <subproject>pac4j-extension-core</subproject>
+        <subproject>pac4j-extension-spring</subproject>
+    </subprojects>
 </project>
