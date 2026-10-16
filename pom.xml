@@ -44,7 +44,7 @@
         <lombok.version>1.18.46</lombok.version>
         <pac4j.version>6.5.5</pac4j.version>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <revision>2.0.x.20260630-SNAPSHOT</revision>
+        <revision>3.0.x.20260630-SNAPSHOT</revision>
         <slf4j.version>2.0.18</slf4j.version>
         
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
